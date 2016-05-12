@@ -22,4 +22,5 @@ int main(int argc, char** argv) {
 	cout << p.get_name() << " grows up." << endl;
 	p.grow_up();
 	cout << p.get_name() << ": " << p.get_age() << endl;
+	return 0;
 }
