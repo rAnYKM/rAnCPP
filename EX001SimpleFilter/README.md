@@ -12,9 +12,9 @@
 
 ## Examples:
 
-### Ca<ts l>ike e<a>ting s<>e>lfish o>n th<e s>>h<<elf.
-### Sensitive: sel Nonsense: <>
-### Output: Cats like eating fish on the shelf.
+	Ca<ts l>ike e<a>ting s<>e>lfish o>n th<e s>>h<<elf.
+	Sensitive: sel Nonsense: <>
+	Output: Cats like eating fish on the shelf.
 
 ## Attention:
 1. To avoid the disambiguation, the sensitive string will not include nonsense characters.
