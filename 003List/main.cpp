@@ -8,6 +8,7 @@ int main() {
 	jason.append(2);
 	jason.append(3);
 	jason.append(4);
+	cout << jason;
 	cout << jason.dequeue() << "," << jason.pop() << "," << jason.dequeue() << "," << jason.pop() << endl;
 	jason.dequeue();
 	jason.display();

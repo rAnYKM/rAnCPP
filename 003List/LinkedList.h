@@ -9,12 +9,15 @@ class Node {
 public:
 	T value;
 	Node<T>* next;
-	Node(T v=NULL, Node<T>* n=NULL) : value(v), next(n){} 
+	Node(T v=NULL, Node<T>* n=NULL) : value(v), next(n) {} 
 };
 
 template <class T>
-
 class LinkedList {
+
+template <class S>
+friend ostream& operator<<(ostream &os, const LinkedList<S> &m);
+
 private:
 	Node<T>* head;
 	void recursive_delete(Node<T> *p) {
@@ -72,7 +75,6 @@ public:
 		return val;
 	}
 
-
 	void display() {
 		for(Node<T>* ptr = head->next; ptr != NULL; ptr = ptr->next) {
 			cout << ptr->value << "->";
@@ -80,7 +82,21 @@ public:
 		cout << endl;
 
 	}
+
 };
+
+template <class T>
+ostream& operator<<(ostream &os, const LinkedList<T> &m) {
+	if (m.head->next == NULL) {
+		os << endl;
+	} 
+	else {
+		for(Node<T>* ptr = m.head->next; ptr != NULL; ptr = ptr->next) {
+			os << ptr->value << endl;
+		}
+	}
+	return os;
+}
 
 #endif
 
