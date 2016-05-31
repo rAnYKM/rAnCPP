@@ -94,5 +94,6 @@ int main() {
 	while (filter(origin, sensitive, nonsense));  //recursively test whether there is sensitive words
 	removeNonsense(origin, nonsense);
 	cout << origin << endl;
+
 	return 0;
 }
