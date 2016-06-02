@@ -1,7 +1,8 @@
-#include <iostream>
-#include <fstream>
-using namespace std;
+#ifndef _TREE_H
+#define _TREE_H
 
+#include <iostream>
+using namespace std;
 
 
 template <class elemType>
@@ -137,6 +138,47 @@ public:
 		lt.root=NULL;
 		rt.root=NULL;
 	}
+
+	void iterPosterOrder() const
+	{
+		linkStack<Node*> st;
+		Node *tmp = root;
+		do
+		{
+			if (tmp != NULL)
+			{
+				cout << "[" << tmp->data << "]" << endl;
+				if (tmp->right != NULL) st.push(tmp->right);
+				st.push(tmp);
+				tmp = tmp->left;
+			}
+			else
+			{
+				tmp = st.pop();
+				if (tmp->right == NULL) 
+				{
+					cout << tmp->data << ' ';
+					tmp = NULL;
+				}
+				else
+				{
+					if (tmp->right == st.top())
+					{
+						Node* tmp2 = st.pop();
+						st.push(tmp);
+						tmp = tmp->right;
+					}
+					else
+					{
+						cout << tmp->data << ' ';
+						tmp = NULL;
+					}
+				}
+			} 
+		} while(!st.isEmpty());
+		cout << endl;
+	}
+
 	bool operator==(const BinaryTree &t1)
 	{
 		linkStack<Node *>s1,s2;
@@ -180,6 +222,15 @@ public:
 		cout << endl;
 	}
 
+	void postOrder()const
+	{
+		if(root!=NULL)
+		{
+			postOrder(root);
+		}
+		cout << endl;
+	}
+
 	void createTree(Type flag);
 
 private:
@@ -213,6 +264,16 @@ private:
 			cout << t->data << ' ';
 			preOrder(t->left);
 			preOrder(t->right);
+		}
+	}
+
+	void postOrder(Node *t) const
+	{
+		if(t!=NULL)
+		{
+			preOrder(t->left);
+			preOrder(t->right);
+			cout << t->data << ' ';
 		}
 	}
 
@@ -268,20 +329,4 @@ void BinaryTree<Type>::createTree(Type flag)
  	}
 }
 
-int main()
-{
-	streambuf* backup = cout.rdbuf();
-	ifstream in("in.txt");
-	ofstream out("out.txt");
-	cin.rdbuf(in.rdbuf());
-	cout.rdbuf(out.rdbuf());
-	BinaryTree<int> t1, t2;
-	t1.createTree(0);
-	t2.createTree(0);
-	t1.preOrder();
-	t2.preOrder();
-	if(t1 == t2) cout<< "Y" <<endl;
-	else cout << "N" << endl;
-	cout.rdbuf(backup);
-	return 0;
-}
+#endif
