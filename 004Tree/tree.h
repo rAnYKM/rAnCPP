@@ -139,7 +139,7 @@ public:
 		rt.root=NULL;
 	}
 
-	void iterPosterOrder() const
+	void iterPostOrder() const
 	{
 		linkStack<Node*> st;
 		Node *tmp = root;
@@ -147,7 +147,6 @@ public:
 		{
 			if (tmp != NULL)
 			{
-				cout << "[" << tmp->data << "]" << endl;
 				if (tmp->right != NULL) st.push(tmp->right);
 				st.push(tmp);
 				tmp = tmp->left;
@@ -162,7 +161,7 @@ public:
 				}
 				else
 				{
-					if (tmp->right == st.top())
+					if (!st.isEmpty() && tmp->right == st.top())
 					{
 						Node* tmp2 = st.pop();
 						st.push(tmp);
@@ -271,8 +270,8 @@ private:
 	{
 		if(t!=NULL)
 		{
-			preOrder(t->left);
-			preOrder(t->right);
+			postOrder(t->left);
+			postOrder(t->right);
 			cout << t->data << ' ';
 		}
 	}

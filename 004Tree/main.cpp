@@ -15,7 +15,7 @@ int main()
 	t2.createTree(0);
 	t1.preOrder();
 	t2.postOrder();
-	t1.iterPosterOrder();
+	t1.iterPostOrder();
 	if(t1 == t2) cout<< "Y" <<endl;
 	else cout << "N" << endl;
 	cout.rdbuf(backup);
