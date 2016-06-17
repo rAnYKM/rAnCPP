@@ -46,8 +46,43 @@ Balanced Search Trees include: [2-3 tree](https://en.wikipedia.org/wiki/2-3_tree
 
 ### AVL tree
 
+(AVL Tree Simulator: [AVL Tree - USFCA](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html))
+
 *“An AVL tree is a self-balancing binary search tree. It was the first such data structure to be invented. In an AVL tree, the heights of the two child subtrees of any node differ by at most one; if at any time they differ by more than one, rebalancing is done to restore this property.” - Wikipedia*
 
 **Balance factor** the balance factor of a node *N* is defined to be the height difference of its left subtree and right subtree.
+
+**Left Rotation**
+
+```C++
+	TreeNode* r = p->right;
+	p->right = r->left;
+	r->left = p;
+``` 
+
+**Right Rotation**
+
+```C++
+	TreeNode* l = p->left;
+	p->left = l->right;
+	l->right = p;
+``` 
+
+**Balance**
+```C++
+	if(balanceFactor(p) == 2)
+	{
+		if(balanceFactor(p->right) < 0)
+			p->right = rotateRight(p->right);
+		return rotateLeft(p);
+	}
+	else if(balanceFactor(p) == -2)
+	{
+		if(balanceFactor(p->left) > 0)
+			p->left = rotateLeft(p->left);
+		return rotateRight(p);
+	}
+	return p;
+```
 
 
